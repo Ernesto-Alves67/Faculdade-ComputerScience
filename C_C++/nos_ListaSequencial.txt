@@ -1,0 +1,38 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Nod {
+    int info;
+    struct Nod* next;
+} Nod;
+
+int main() {
+    // Criando os nós
+    Nod* nodeA = (Nod*)malloc(sizeof(Nod));
+    Nod* nodeB = (Nod*)malloc(sizeof(Nod));
+    Nod* nodeC = (Nod*)malloc(sizeof(Nod));
+
+    // Definindo os valores dos nós
+    nodeA->info = 1;
+    nodeB->info = 2;
+    nodeC->info = 3;
+
+    // Estabelecendo as conexões entre os nós
+    nodeA->next = nodeB;
+    nodeB->next = nodeC;
+    nodeC->next = NULL;  // Último nó da lista
+
+    // Percorrendo a lista e imprimindo os valores
+    Nod* current = nodeA;
+    while (current != NULL) {
+        printf("%d ", current->info);
+        current = current->next;
+    }
+
+    // Liberando a memória alocada para os nós
+    free(nodeA);
+    free(nodeB);
+    free(nodeC);
+
+    return 0;
+}
