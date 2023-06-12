@@ -1,12 +1,12 @@
 #ifndef DSTRUCT_H_INLUDED
 #define DSTRUCT_H_INLUDED
 #define MAX 25
-/*Nó para armazenazem de dados.*/
+/*NÃ³ para armazenazem de dados.*/
 typedef struct Nod {
     int info;
     struct Nod* next;
 } Nod;
-/* Nó para o encadeamento duplo*/
+/* NÃ³ para o encadeamento duplo*/
 typedef struct Nodu{
 	int info;
 	struct Nodu* prev;
@@ -14,7 +14,7 @@ typedef struct Nodu{
 } Nodu;
 
 /*********************************************
-*---Definição da estrutura Lista encadeada---*
+*---DefiniÃ§Ã£o da estrutura Lista encadeada---*
 **********************************************/
 typedef struct {
 	int tamanho;
@@ -22,7 +22,7 @@ typedef struct {
 	Nod* fim;
 } Lista;
 
-/*---Funçoes Lista---*/
+/*---FunÃ§oes Lista---*/
 void init_Lista(Lista* l);
 void imprime(Lista* l);
 void showLista(Lista* l);
@@ -33,7 +33,7 @@ void inserePosicao(Lista* lista, int posicao, int elemento);
 void delLista(Lista* l);
 
 /*********************************************
-*---Definição da estrutura Lista Duplamente encadeada---*
+*---DefiniÃ§Ã£o da estrutura Lista Duplamente encadeada---*
 **********************************************/
 typedef struct {
 	int tamanho;
@@ -41,7 +41,7 @@ typedef struct {
 	Nodu* fim;
 } Dlista;
 
-/*---Funçoes Lista---*/
+/*---FunÃ§oes Lista---*/
 void init_Dlista(Dlista* lista);
 void showDlista(Dlista* lista);
 void insDlista(Dlista* lista, int Elem);
@@ -52,15 +52,15 @@ void del_Delem(Dlista* lista, int id);
 
 
 /*********************************************
-*---Definição da estrutura Pilha dinamica---*
+*---DefiniÃ§Ã£o da estrutura Pilha dinamica---*
 **********************************************/
-/*Nó para armazenazem de dados.*/
+/*NÃ³ para armazenazem de dados.*/
 typedef struct{
 	int topo;
 	Nodu* info;
 }Pilha_dim;
 
-//funções pilha
+//funÃ§Ãµes pilha
 void initPilhaDim(Pilha_dim* pilha);
 void addElem(Pilha_dim* pilha, int Elem);
 int popElem(Pilha_dim* pilha);
@@ -68,7 +68,7 @@ void delPilhaDim(Pilha_dim* pilha);
 void showPD(Pilha_dim* pilha);
 
 /*********************************************
-*---Definição da estrutura Pilha estatica---*
+*---DefiniÃ§Ã£o da estrutura Pilha estatica---*
 **********************************************/
 typedef struct{
 	int topo;
@@ -82,7 +82,7 @@ void delPilha(Pilha_* pilha);
 void showPilha(Pilha_* pilha);
 
 /*********************************************
-*---Definição da estrutura Fila Dinamica---*
+*---DefiniÃ§Ã£o da estrutura Fila Dinamica---*
 **********************************************/
 typedef struct{
 	int tamanho;
@@ -101,7 +101,7 @@ void showFila(Fila* f);
 
 
 /*********************************************
-*---Definição da estrutura Deque---*
+*---DefiniÃ§Ã£o da estrutura Deque---*
 **********************************************/
 typedef struct {
 	int tamanho;
@@ -109,7 +109,7 @@ typedef struct {
 	Nodu* fim;
 } Deque;
 
-//funções Deque
+//funÃ§Ãµes Deque
 void initDeque(Deque* d);
 void showDeque(Deque* d);
 void insBegin(Deque* d, int Elem);
@@ -123,51 +123,47 @@ void delEnd(Deque* d);
 
 
 /*********************************************
-*---Definição da estrutura Conjunto(Set)---*
+*---DefiniÃ§Ã£o da estrutura Conjunto(Set)---*
 **********************************************/
 
 /*********************************************
-*---Definição da estrutura Tabela hash---*
+*---DefiniÃ§Ã£o da estrutura Tabela hash---*
 **********************************************/
-/*Nó para armazenazem de dados.*/
+/*NÃ³ para armazenazem de dados.*/
 typedef struct {
 	int ra;
 	char *nome;
 } tHash;
-//funções tHash
+//funÃ§Ãµes tHash
 void initTH(tHash *t);
 void iniciaTH(int ra_, char* nome_, tHash *t);
 char* getNome(tHash *t);
 int getRa(tHash *t);
 
 /*********************************************
-*---Definição da estrutura Tabela hash Encadeada ---*
+*---DefiniÃ§Ã£o da estrutura Tabela hash Encadeada ---*
 **********************************************/
 
 /*********************************************
-*---Definição da estrutura Arvore binaria---*
+*---DefiniÃ§Ã£o da estrutura Arvore binaria---*
 **********************************************/
 
 
 /*********************************************
-*---Definição da estrutura Heap ---*
+*---DefiniÃ§Ã£o da estrutura Heap ---*
 **********************************************/
 
 /*********************************************
-*---Definição da estrutura Fila Prioritaria---*
+*---DefiniÃ§Ã£o da estrutura Fila Prioritaria---*
 **********************************************/
 
 /*********************************************
-*---Definição da estrutura Grqfo---*
+*---DefiniÃ§Ã£o da estrutura Grafo---*
 **********************************************/
 
-//funções deque
-//void iniciaDeque(DEQUE* deq);
-//void delElem(DEQUE* deq);
-//void addElem(DEQUE* deq, int inicio);
-
-//funcoes arvore
-
+/*********************************************
+*---DefiniÃ§Ã£o da estrutura Ã¡rvore rubro-negra---*
+**********************************************/
 
 #endif
 
