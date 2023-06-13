@@ -143,7 +143,8 @@ int set_isMember(set_* set, int Elem);
 int set_isSubset(set_* set1, set_* set2);
 int set_isEqual(set_* set1, set_* set2);
 int set_size(set_* set);
-void set_cover(set_** sets, int numSets, set_* result);
+void set_cover(int conjunto[], int tamanho_conjunto, int subconjuntos[][5], int quantidade_subconjuntos);
+//void set_cover(set_** sets, int numSets, set_* result);
 
 
 
@@ -164,23 +165,33 @@ int getRa(tHash *t);
 /*********************************************
 *---Definição da estrutura Tabela hash Encadeada ---*
 **********************************************/
+typedef struct {
+	int ra;
+	char *nome;
+}thash_encadeada;
 
 /*********************************************
 *---Definição da estrutura Arvore binaria---*
 **********************************************/
-
+typedef struct{
+} binaryArvore;
 
 /*********************************************
 *---Definição da estrutura Heap ---*
 **********************************************/
-
+typedef struct{
+} heap_;
 /*********************************************
 *---Definição da estrutura Fila Prioritaria---*
 **********************************************/
-
+typedef struct{
+} filaPriority;
 /*********************************************
 *---Definição da estrutura Grqfo---*
 **********************************************/
+typedef struct{
+} grafo;
+
 
 #endif
 

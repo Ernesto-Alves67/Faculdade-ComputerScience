@@ -886,24 +886,23 @@ set_ set_intersec(set_* set1, set_* set2) {
     return inter;
 }
 
+set_ set_diferenca(set_* set1, set_* set2) {
+    set_ diferenca;
+    initSet(&diferenca);
 
-set_ set_differenca(set_* set1, set_* set2) {
-    set_ dife;
-    initSet(&dife);
-
-    if (set1->tamanho == 0 || set2->tamanho == 0) {
-        return dife;
+    if (set1->tamanho == 0) {
+        return diferenca;
     }
 
     Nod* atual = set1->inicio;
 
     while (atual != NULL) {
         if (!set_isMember(set2, atual->info)) {
-            insertSet(&dife, atual->info);
+            insertSet(&diferenca, atual->info);
         }
         atual = atual->next;
     }
-    return dife;
+    return diferenca;
 }
 
 int set_isMember(set_* set, int Elem) {
@@ -917,6 +916,7 @@ int set_isMember(set_* set, int Elem) {
     return 0; // O elemento não está presente no conjunto
 }
 
+// Verifica se set1 é subconjunto dedo set2
 int set_isSubset(set_* set1, set_* set2) {
     Nod* atual = set1->inicio;
     while (atual != NULL) {
@@ -939,10 +939,75 @@ int set_size(set_* set) {
     return set->tamanho;
 }
 
-// Função para fazer a união de vários conjuntos (cobrir todos os elementos em um único conjunto)
-void set_cover(set_** sets, int numSets, set_* result) {
-    // Implemente a lógica para realizar a cobertura dos conjuntos
+// Função para cobertura de conjuntos (cobrir todos os elementos em uma única coleção de conjunto)
+set_* set_cover(set_* set1, int tamanho_conjunto, int subconjuntos[][5], int quantidade_subconjuntos) {
+    bool cobertura_conjuntos(int conjunto[], int tamanho_conjunto, int subconjuntos[][5], int quantidade_subconjuntos) {
+        // Implementação da função cobertura_conjuntos
+
+        return true;
+    }
+
+    void combinacoes(int subconjuntos[][5], int quantidade_subconjuntos, int k, int indice_atual, int combinacao_atual[][5], int indice_combinacao, int conjunto[], int tamanho_conjunto, set_* resultado) {
+        if (indice_combinacao == k) {
+            if (cobertura_conjuntos(conjunto, tamanho_conjunto, combinacao_atual, k)) {
+                // Criar um novo conjunto e adicionar o conjunto atual a ele
+                set_* novo_conjunto = malloc(sizeof(set_));
+                novo_conjunto->tamanho = k;
+                novo_conjunto->inicio = NULL;
+                novo_conjunto->fim = NULL;
+                for (int i = 0; i < k; i++) {
+                    Nod* novo_nod = malloc(sizeof(Nod));
+                    novo_nod->info = combinacao_atual[i][0];
+                    novo_nod->next = NULL;
+                    if (novo_conjunto->inicio == NULL) {
+                        novo_conjunto->inicio = novo_nod;
+                        novo_conjunto->fim = novo_nod;
+                    } else {
+                        novo_conjunto->fim->next = novo_nod;
+                        novo_conjunto->fim = novo_nod;
+                    }
+                }
+                // Adicionar o novo conjunto ao resultado
+                if (resultado->inicio == NULL) {
+                    resultado->inicio = novo_conjunto;
+                    resultado->fim = novo_conjunto;
+                } else {
+                    resultado->fim->next = novo_conjunto;
+                    resultado->fim = novo_conjunto;
+                }
+            }
+            return;
+        }
+
+        if (indice_atual >= quantidade_subconjuntos) {
+            return;
+        }
+        
+        for (int i = indice_atual; i < quantidade_subconjuntos; i++) {
+            for (int j = 0; j < 5; j++) {
+                combinacao_atual[indice_combinacao][j] = subconjuntos[i][j];
+            }
+            combinacoes(subconjuntos, quantidade_subconjuntos, k, i + 1, combinacao_atual, indice_combinacao + 1, conjunto, tamanho_conjunto, resultado);
+        }
+    }
+    
+    set_* resultado = malloc(sizeof(set_));
+    resultado->tamanho = 0;
+    resultado->inicio = NULL;
+    resultado->fim = NULL;
+
+    int combinacao_atual[quantidade_subconjuntos][5];
+    
+    for (int k = 1; k <= quantidade_subconjuntos; k++) {
+        combinacoes(subconjuntos, quantidade_subconjuntos, k, 0, combinacao_atual, 0, set1->conjunto, tamanho_conjunto, resultado);
+    }
+    
+    return resultado;
 }
+
+/*void set_cover(set_** sets, int numSets, set_* result) {
+    // Implemente a lógica para realizar a cobertura dos conjuntos
+}*/
 
 
 

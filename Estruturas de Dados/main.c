@@ -3,8 +3,6 @@
 #include <windows.h>
 #include "Dstruct.h"
 
-#include <stdio.h>
-#include <stdlib.h>
 #define Max_conj 50
 int main() {
 	set_ d1;
@@ -127,10 +125,10 @@ int main() {
             printf("posicao set 2: ");
             scanf("%d", &num1);
             getchar();
-			set_* valor;
-			valor->inicio = set_differenca(&conjuntos[num], &conjuntos[num1]);
+			set_ valor = set_diferenca(&conjuntos[num], &conjuntos[num1]);
+			//valor->inicio = set_differenca(&conjuntos[num], &conjuntos[num1]);
 	
-			if(valor->inicio != NULL){
+			if(valor.inicio != NULL){
 				showSet(&valor);
 			}else{
 				printf("Diferenca vazia {}");
