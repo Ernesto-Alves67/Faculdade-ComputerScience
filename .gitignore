@@ -6,7 +6,7 @@
 *.dev
 *.layout
 
-
+Projeto1_private.h
 # Arquivos temporários
 *.tmp
 *.bak
