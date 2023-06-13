@@ -570,7 +570,7 @@ void showFila(Fila* f){
 
 /* ### Funçõe Deque ### */
 void initDeque(Deque* d){
-	d->tamanho =0
+	d->tamanho =0;
 	d->inicio = NULL;
 	d->fim = NULL;
 }
@@ -610,27 +610,339 @@ void insBegin(Deque* d, int Elem){
     if (d->inicio == NULL) {
     	novoNo->next = NULL;
     	novoNo->prev = NULL;
-        // Se a lista estiver vazia, o novo nó será o primeiro e o último
+        // Se o deque estiver vazia, o novo nó será o primeiro e o último
         d->inicio = novoNo;
         d->fim = novoNo;
-        //lista->inicio->next = NULL;
 	}else{
 		novoNo->next = d->inicio;
 		novoNo->prev = NULL;
+    	d->inicio->prev = novoNo;
     	d->inicio = novoNo;
 	}
-        d->tamanho++;
+    d->tamanho++;
 }
 
-void insEnd(Deque* d, int Elem);
-int getBegin(Deque* d);
-int getEnd(Deque* d);
-int sizeDeque(Deque* d);
-void del_Deque(Deque* d);
-void delBegin(Deque* d);
-void delEnd(Deque* d);
+void insEnd(Deque* d, int Elem){
+	if (d->tamanho >= MAX) {
+        printf("Erro: Lista cheia\n");
+        return;
+    }
+    
+    Nodu* novoNo = (Nodu*)malloc(sizeof(Nodu));
+    if (novoNo == NULL) {
+        printf("Erro: Falha na alocação de memória\n");
+        return;
+    }
+    novoNo->info = Elem;
+    novoNo->next = NULL;
+	novoNo->prev = d->fim;  // Define o próximo como NULL, já que será o último nó
+    
+    if (d->inicio == NULL) {
+        // Se a lista estiver vazia, o novo nó será o primeiro e o último
+        d->inicio = novoNo;
+        d->fim = novoNo;
+        novoNo->prev = NULL;
+    } else {
+        // Se a lista não estiver vazia, adiciona o novo nó no final
+        d->fim->next = novoNo;
+        d->fim = novoNo;
+    }
+    
+    d->tamanho++;
+}
+
+int getBegin(Deque* d){
+	if(d->tamanho == 0){
+		printf("Deque vazio");
+		return;
+	}
+	return d->inicio->info;
+}
+
+int getEnd(Deque* d){
+	if(d->tamanho == 0){
+		printf("Deque vazio");
+		return;
+	}
+	return d->fim->info;
+}
+
+int sizeDeque(Deque* d){
+	if(d->tamanho == 0){
+		printf("Deque vazio");
+		return 0;
+	}
+	return d->tamanho;
+}
+
+void del_Deque(Deque* d){
+	Nodu* atual = d->inicio;
+    while (atual != NULL) {
+        Nodu* proximo = atual->next;
+        free(atual);
+        atual = proximo;
+    }
+    d->tamanho = 0;
+    d->inicio = NULL;
+    d->fim = NULL;
+}
+
+void delBegin(Deque* d){
+	if (d->tamanho == 0) {
+        printf("Erro: Deque vazio\n");
+        return; // Ou algum valor de erro adequado
+    }
+    
+    Nodu* removido = d->inicio;
+    
+    if (d->tamanho == 1) {
+        d->inicio = NULL;
+        d->fim = NULL;
+    } else {
+        d->inicio = removido->next;
+        d->inicio->prev = NULL;
+    }
+    
+    free(removido);
+    d->tamanho--;
+    
+}
+
+void delEnd(Deque* d){
+    if (d->tamanho == 0) {
+        printf("Erro: Deque vazio\n");
+        return;
+    }
+
+    Nodu* aux = d->fim;
+    d->fim = d->fim->prev;
+    if (d->fim == NULL) {  // Se o deque ficar vazio após a remoção
+        d->inicio = NULL;
+    } else {
+        d->fim->next = NULL;
+    }
+
+    free(aux);
+    d->tamanho--;
+}
 
 
+/* ### Funçõe Conjunto(SET) ### */
+void initSet(set_* set){
+	set->tamanho = 0;
+	set->inicio = NULL;
+	set->fim = NULL;
+}
+
+void delSet(set_* set){
+    Nod* atual = set->inicio;
+    while (atual != NULL) {
+        Nod* proximo = atual->next;
+        free(atual);
+        atual = proximo;
+    }
+    set->inicio = NULL;
+    set->fim = NULL;
+    set->tamanho = 0;
+}
+
+void showSet(set_* set){
+	if (set->inicio == NULL) {
+        printf("Lista vazia\n");
+        return;
+    }
+    
+    Nod* atual = set->inicio;
+    printf("{");
+    while (atual != NULL) {
+        printf("%d", atual->info);
+        
+        atual = atual->next;
+        if (atual != NULL) {
+            printf(", ");
+        }
+    }
+    printf("}\n");
+}
+
+void insertSet(set_* set, int Elem){
+    //verificar se elemento a ser inserido ja esta no conjunto
+	Nod* atual = set->inicio;
+	while (atual != NULL) {
+    	if(Elem == atual->info){
+        	printf("Erro: Set ja Contem este Elemento: %d\n", atual->info);
+        	return;    		
+		}
+    
+    	atual = atual->next;
+    	if (atual != NULL) {
+        	continue;
+    	} else{
+    		break;
+		}
+    	
+	}
+		
+	Nod* novoNo = (Nod*)malloc(sizeof(Nod));	
+	if (set->tamanho >= MAX) {
+        printf("Erro: Set cheio Elementos: %d\n", set->tamanho);
+        return;
+    }
+    if (novoNo == NULL) {
+        printf("Erro: Falha na alocação de memória\n");
+        return;
+    }
+    
+
+
+    novoNo->info = Elem;
+    novoNo->next = NULL;
+    
+	if (set->inicio == NULL) {
+        // Se a lista estiver vazia, o novo nó será o primeiro e o último
+        set->inicio = novoNo;
+        set->fim = novoNo;
+        //lista->inicio->next = NULL;
+	}else{
+		set->fim->next = novoNo;
+		set->fim = novoNo;
+	}
+        set->tamanho++;	
+}
+
+void set_idel(set_* set, int Elem){
+	Nod* atual = set->inicio;
+    Nod* anterior = NULL;
+
+    while (atual != NULL) {
+        if (atual->info == Elem) {
+            if (anterior == NULL) {
+                set->inicio = atual->next;
+            } else {
+                anterior->next = atual->next;
+            }
+
+            if (atual == set->fim) {
+                set->fim = anterior;
+            }
+
+            free(atual);
+            set->tamanho--;
+            return;
+        }
+
+        anterior = atual;
+        atual = atual->next;
+    }
+}
+
+set_ set_union(set_* set1, set_* set2) {
+    if(set1->tamanho == 0){
+    	printf("Set do parametro esta vazio!\n");
+    	return;
+	}
+	if(set2->tamanho == 0){
+		printf("Set do parametro 2 esta vazio!\n");
+		return;
+	}
+	
+	set_ uniao;
+	initSet(&uniao);
+	
+	Nod* atual = set1->inicio;
+	Nod* atual2 = set2->inicio;
+	
+    while (atual != NULL) {
+        insertSet(&uniao, atual->info);
+        atual = atual->next;
+    }
+    
+    while (atual2 != NULL) {
+        if (!set_isMember(set1, atual2->info)) {
+            insertSet(&uniao, atual2->info);
+        }
+        atual2 = atual2->next;
+    }
+	
+	return uniao;
+}
+
+set_ set_intersec(set_* set1, set_* set2) {
+    set_ inter;
+    initSet(&inter);
+
+    if (set1->tamanho == 0 || set2->tamanho == 0) {
+        return inter;
+    }
+
+    Nod* atual = set1->inicio;
+
+    while (atual != NULL) {
+        if (set_isMember(set2, atual->info)) {
+            insertSet(&inter, atual->info);
+        }
+        atual = atual->next;
+    }
+    return inter;
+}
+
+
+set_ set_differenca(set_* set1, set_* set2) {
+    set_ dife;
+    initSet(&dife);
+
+    if (set1->tamanho == 0 || set2->tamanho == 0) {
+        return dife;
+    }
+
+    Nod* atual = set1->inicio;
+
+    while (atual != NULL) {
+        if (!set_isMember(set2, atual->info)) {
+            insertSet(&dife, atual->info);
+        }
+        atual = atual->next;
+    }
+    return dife;
+}
+
+int set_isMember(set_* set, int Elem) {
+    Nod* atual = set->inicio;
+    while (atual != NULL) {
+        if (atual->info == Elem) {
+            return 1; // O elemento está presente no conjunto
+        }
+        atual = atual->next;
+    }
+    return 0; // O elemento não está presente no conjunto
+}
+
+int set_isSubset(set_* set1, set_* set2) {
+    Nod* atual = set1->inicio;
+    while (atual != NULL) {
+        if (!set_isMember(set2, atual->info)) {
+            return 0; // Elemento do set1 não está presente no set2, portanto, set1 não é um subconjunto de set2
+        }
+        atual = atual->next;
+    }
+    return 1; // Todos os elementos de set1 estão presentes em set2, portanto, set1 é um subconjunto de set2
+}
+
+int set_isEqual(set_* set1, set_* set2) {
+    if (set1->tamanho != set2->tamanho) {
+        return 0; // Os conjuntos têm tamanhos diferentes, portanto, não são iguais
+    }
+    return set_isSubset(set1, set2) && set_isSubset(set2, set1);
+}
+
+int set_size(set_* set) {
+    return set->tamanho;
+}
+
+// Função para fazer a união de vários conjuntos (cobrir todos os elementos em um único conjunto)
+void set_cover(set_** sets, int numSets, set_* result) {
+    // Implemente a lógica para realizar a cobertura dos conjuntos
+}
 
 
 
@@ -648,6 +960,7 @@ void iniciaTH(int ra_, char* nome_, tHash *t){
 	t->ra = ra_;
     strcpy(t->nome, nome_);
 }
+
 int getRa(tHash *t){
 	return t->ra;
 }
