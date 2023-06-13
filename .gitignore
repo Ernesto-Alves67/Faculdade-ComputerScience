@@ -1,0 +1,18 @@
+# Arquivos compilados
+*.class
+*.o
+*.pyc
+*.win
+*.dev
+*.layout
+
+
+# Arquivos temporários
+*.tmp
+*.bak
+*.swp
+
+# Diretórios específicos
+/bin/
+/build/
+/dist/
