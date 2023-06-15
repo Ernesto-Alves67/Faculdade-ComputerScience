@@ -5,6 +5,7 @@
 *.win
 *.dev
 *.layout
+*.exe
 
 Projeto1_private.h
 # Arquivos temporários
