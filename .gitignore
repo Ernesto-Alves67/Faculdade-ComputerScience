@@ -5,7 +5,16 @@
 *.win
 *.dev
 *.layout
-
+*.sln
+*.vcxproj
+*.vcxproj.user
+*.vcxproj.filters
+*.pdb
+*.idb
+*.obj
+*.ilk
+*.log
+*..exe.recipe
 Projeto1_private.h
 # Arquivos temporários
 *.tmp
@@ -16,3 +25,5 @@ Projeto1_private.h
 /bin/
 /build/
 /dist/
+/x64/
+/Automato.7f85a838.tlog/
