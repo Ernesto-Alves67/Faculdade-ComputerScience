@@ -6,6 +6,11 @@
 *.dev
 *.layout
 *.exe
+*.sln
+*.obj
+*.vcxproj
+*.vcxproj.users
+*.vcxproj.filters
 
 Projeto1_private.h
 # Arquivos temporários
@@ -17,3 +22,5 @@ Projeto1_private.h
 /bin/
 /build/
 /dist/
+/x64/
+/.vs/
