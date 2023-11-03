@@ -1,0 +1,4 @@
+aabb
+aababa
+abab
+bbabaaa

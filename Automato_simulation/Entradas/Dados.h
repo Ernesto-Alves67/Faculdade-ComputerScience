@@ -5,26 +5,24 @@
 #include <fstream>
 #include <string>
 #include <vector>
-void configAutomato(std::string nomeArquivo);
-void testAutomato(std::string nomeArquivo);
+#include <map>
+using std::string;
 
-class Graph {
-private:
-    int V; // Número de vértices
-    std::vector<std::vector<int>> adjacencyMatrix; // Matriz de adjacência
-public:
-    Graph(int vertice);
-    void addEdge(int u, int v, int weight);
-    void printMatrix();
-};
 
 class Automato {
 private:
-    std::vector<std::vector<std::pair<int, int>>> adjacencyList;
+    std::map<std::string, std::vector<std::pair<string, string>>> adjacencyList;
+    
 
 public:
     Automato();
-    void addVertice(int u, int v, int peso);
+    void addVertice(const string& vertice);
+    void addAresta(const string& u, string& v, string& peso);
     void printAuto();
+    bool vertexExists(const std::string& vertice);
 };
+
+void configAutomato(std::string nomeArquivo, Automato* autoDetermi);
+void testAutomato(std::string nomeArquivo, Automato* autoDetermi);
+
 #endif // DADOS_H
