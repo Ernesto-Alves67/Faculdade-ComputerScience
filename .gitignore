@@ -1,5 +1,7 @@
 # Arquivos compilados
 *.class
+*.classpath
+*.project
 *.o
 *.pyc
 *.win
@@ -24,3 +26,4 @@ Projeto1_private.h
 /dist/
 /x64/
 /.vs/
+/.settings/
