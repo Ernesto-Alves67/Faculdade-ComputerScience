@@ -15,11 +15,17 @@ private:
     
 
 public:
+    std::string estado_inicial = "q0";
+    std::string estado_final = "qf";
+    std::string estado_atual = " ";
+    std::string entrada_avaliada = " ";
+    std::string processados = " ";
     Automato();
     void addVertice(const string& vertice);
     void addAresta(const string& u, string& v, string& peso);
     void printAuto();
     bool vertexExists(const std::string& vertice);
+    string transicaoAutomato(string& entrada);
 };
 
 void configAutomato(std::string nomeArquivo, Automato* autoDetermi);

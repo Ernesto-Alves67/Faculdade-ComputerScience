@@ -24,6 +24,31 @@ void Automato::addVertice(const string& vertice) {
     adjacencyList[vertice] = std::vector<std::pair<std::string, std::string>>();
 }
 
+string Automato::transicaoAutomato(string& entrada) {
+    
+    auto it = adjacencyList.find(estado_atual);
+    if (it != adjacencyList.end() && !it->second.empty()) {
+        const std::string& estadoAutomato = it->first;
+        const std::vector<std::pair<string, string>>& transicoes = it->second;
+        string estado1 = transicoes[0].first;
+        string estado2 = transicoes[1].first;
+        //std::cout << "\nEstado: " << estadoAutomato << " entry: " << entrada<<"\n";
+        //std::cout << "  ir para: " << transicoes[0].first << " lendo: " << transicoes[0].second << std::endl;
+        //std::cout << "  ir para: " << transicoes[1].first << " lendo: " << transicoes[1].second << std::endl;
+        if (entrada == transicoes[0].second) {
+            processados = processados + transicoes[0].second;
+            return estado1;
+        }
+        if (entrada == transicoes[1].second) {
+            processados = processados + transicoes[1].second;
+            return estado2;
+        }
+    }
+    else {
+        return "Entrada n pode ser processada.";
+    }
+}
+
 void Automato::printAuto() {
     
     for (const auto& pair : adjacencyList) {
@@ -109,25 +134,92 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
         // Faça algo com a linha lida, por exemplo, imprima-a
         //std::cout << line << std::endl;
     }
-    cout << "Exibindo Arestas do automato \n";
-    autoDetermi->printAuto();
+    
+    //autoDetermi->printAuto();
     // Feche o arquivo quando terminar de ler
     inputFile.close();
 
 
 }
+
 ///////////// Configuração das entradas
+int contarLinhas(const std::string& nomeArquivo) {
+    std::ifstream arquivo(nomeArquivo);
+
+    if (!arquivo.is_open()) {
+        std::cerr << "Erro ao abrir o arquivo." << std::endl;
+        return -1; // Retorna um valor negativo para indicar erro
+    }
+
+    int numeroLinhas = 0;
+    std::string linha;
+
+    while (std::getline(arquivo, linha)) {
+        numeroLinhas++;
+    }
+
+    arquivo.close();
+    return numeroLinhas;
+}
+
+
 void testAutomato(std::string nomeArquivo, Automato* autoDetermi){
     std::ifstream inputFile(nomeArquivo);
+
+    int numeroLinhas = 0;
+    std::vector<std::string> visitados;
+    numeroLinhas = contarLinhas(nomeArquivo);
+
+    
 
     if (!inputFile) {
         std::cerr << "Erro ao abrir o arquivo." << std::endl;
         return;
     }
     std::string line;
+    std::string estado;
 
-
+    
     while (std::getline(inputFile, line)) {
-        cout << line << endl;
+        visitados.clear();
+        autoDetermi->entrada_avaliada = line + "\n";
+        autoDetermi->estado_atual = autoDetermi->estado_inicial;
+
+        cout << "Processando entrada => " << line;
+        for (int i = 0; i < autoDetermi->entrada_avaliada.length(); ++i) {
+            
+            char caractere =autoDetermi->entrada_avaliada[i];
+            visitados.push_back("q0");
+            
+            if (to_string(caractere) != "10" && visitados.back() != "qf") {
+                string mys{ caractere };
+                //cout << i << " ASCii: " << to_string(caractere) << " " + mys << endl;
+                estado = autoDetermi->transicaoAutomato(mys);
+                visitados.push_back(estado);
+                autoDetermi->estado_atual = estado;
+            }
+            else {
+                if (autoDetermi->estado_atual == "qf") {
+                    cout << " >Aceita" << endl;
+                }else{ cout << " >Recusada" << endl; }
+                
+                
+            }
+    
+            /*if (autoDetermi->estado_atual != autoDetermi->estado_final && to_string(caractere) != "\n") {
+                char proximo = autoDetermi->entrada_avaliada[i + 1];
+                cout << "\nentry " << i << endl;
+                
+                if (to_string(proximo) == "\n") {
+                    cout << "o barra n :" << proximo << endl;
+                }
+            }*/
+            
+            
+        }
+        autoDetermi->entrada_avaliada = " ";
+        autoDetermi->processados = " ";
     }
+    cout << "Linhas processadas: " << numeroLinhas << endl;
+    inputFile.close();
 }
