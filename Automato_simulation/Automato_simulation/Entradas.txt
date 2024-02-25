@@ -2,3 +2,6 @@ aabb
 aababa
 ababb
 bbabaaa
+aa
+bb
+aab
