@@ -1,4 +1,4 @@
-# Simulação de Autômato - Readme
+# Automato Simulation
 
 ## Introdução
 
