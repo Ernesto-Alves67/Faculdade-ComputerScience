@@ -14,7 +14,6 @@ class Automato {
 private:
     std::map<std::string, std::vector<std::pair<string, string>>> adjacencyList;  // Lista de adjacencia que implementa o grafo
     
-
 public:
     std::string estado_inicial = "q0";
     std::vector<std::string> estado_final = {};
@@ -33,7 +32,7 @@ void configAutomato(std::string nomeArquivo, Automato* autoDetermi);
 void testAutomato(std::string nomeArquivo, Automato* autoDetermi);
 
 
-//========================================== Automato Não determminitico
+//========================================== Automato NÃ£o determminitico
 class AutoND {
 private:
     std::map<std::string, std::vector<std::pair<string, string>>> adjacencyList;
@@ -57,7 +56,7 @@ public:
 
 void configAutoND(std::string nomeArquivo, AutoND* nonDetermi);
 
-//========================================== Automato Não Determinisco Transição c/ Vazia
+//========================================== Automato NÃ£o Determinisco TransiÃ§Ã£o c/ Vazia
 class Epsilon_NFA {
 
 };
