@@ -3,9 +3,8 @@
 #include <algorithm>
 using namespace std;
 /* === TIPS === */
-
 /*
-    Implementar as leituras para a definiÁ„o do Automato.
+    Implementar as leituras para a defini√ß√£o do Automato.
     Implementar as leituras para processamento das entradas.
 */
 
@@ -68,13 +67,13 @@ void Automato::printAuto() {
 bool Automato::vertexExists(const string& vertice) {
     for (const auto& pair : adjacencyList) {
         if (pair.first == vertice) {
-            return true; // O vÈrtice j· existe no grafo
+            return true; // O v√©rtice j√° existe no grafo
         }
     }
     return false;
 }
 
-///////////// ConfiguraÁ„o e teste do automato Deterministico
+///////////// Configura√ß√£o e teste do automato Deterministico
 /*
 void configAutomato(string nomeArquivo, Automato* autoDetermi) {
     //nomeArquivo = "exemplo.txt"; // Nome do arquivo a ser lido
@@ -102,7 +101,7 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
             //cout << "entrou0";
             if (matches.size() > 1 && linhasLidas==0) {
                 cout << "Alfabeto da Linguagem\t";
-                valorA1 = matches[1].str()[1]; // ObtÈm a parte apÛs os dois pontos como uma string
+                valorA1 = matches[1].str()[1]; // Obt√©m a parte ap√≥s os dois pontos como uma string
                 valorA2 = matches[1].str()[4];
                 std::cout << valorA1 << " "<< valorA2 << std::endl;
                 
@@ -112,7 +111,7 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
                 string valorE0 = line.substr(0, 2);
                 
                 vetorDeVertices.push_back(valorE0);
-                string valorE1 = matches[1].str().substr(1, 2);// ObtÈm a parte apÛs os dois pontos como uma string
+                string valorE1 = matches[1].str().substr(1, 2);// Obt√©m a parte ap√≥s os dois pontos como uma string
                 vetorDeVertices.push_back(valorE1);
                 string valorE2 = matches[1].str().substr(4, 2);
                 vetorDeVertices.push_back(valorE2);
@@ -122,10 +121,10 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
                 //########## Adicionando vertices(estados) no automato
                 for (int i = 0; i < vetorDeVertices.size(); i++) {
                     if (!autoDetermi->vertexExists(vetorDeVertices[i])) {
-                        autoDetermi->addVertice(vetorDeVertices[i]); // Adiciona o vÈrtice somente se ele n„o existir
+                        autoDetermi->addVertice(vetorDeVertices[i]); // Adiciona o v√©rtice somente se ele n√£o existir
                     }
                     else {
-                        //std::cout << "O vertice j· existe no grafo." << std::endl;
+                        //std::cout << "O vertice j√° existe no grafo." << std::endl;
                         continue;
                     }
                 }
@@ -135,7 +134,7 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
                 
             }
         }
-        // FaÁa algo com a linha lida, por exemplo, imprima-a
+        // Fa√ßa algo com a linha lida, por exemplo, imprima-a
         //std::cout << line << std::endl;
     }
     
@@ -156,9 +155,7 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
         std::cerr << "Erro ao abrir o arquivo." << std::endl;
         return;
     }
-
-   
-
+    
     std::string line;
     int linhasLidas = 0;
     string valorAresta1 = "";
@@ -170,7 +167,7 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
             //cout << "entrou0";
             if (linhasLidas == 0 && line.size() >= 2) {
                 cout << "Alfabeto da Linguagem\t";
-                valorAresta1 = line[2]; // ObtÈm a parte apÛs os dois pontos como uma string
+                valorAresta1 = line[2]; // Obt√©m a parte ap√≥s os dois pontos como uma string
                 valorAresta2 = line[5];
                 std::cout << valorAresta1 << "\t" << valorAresta2 << std::endl;
 
@@ -182,7 +179,7 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
                 size_t inicial = line.find(">"); // inicial
                 size_t final = line.find("*");
                 if (pos != std::string::npos) {
-                    std::cout << "A sequÍncia '>*' foi encontrada na posiÁ„o: " << pos << std::endl;
+                    std::cout << "A sequ√™ncia '>*' foi encontrada na posi√ß√£o: " << pos << std::endl;
                     /*cout << "" << line.substr(5, 2) << endl;
                     cout << "" << line.substr(9, 2) << endl;
                     cout << "" << line.substr(2, 2) << endl;*/
@@ -190,7 +187,7 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
                     string valorE0 = line.substr(2, 2);
 
                     vetorDeVertices.push_back(valorE0);
-                    string valorE1 = line.substr(5, 2);// ObtÈm a parte apÛs os dois pontos como uma string
+                    string valorE1 = line.substr(5, 2);// Obt√©m a parte ap√≥s os dois pontos como uma string
                     vetorDeVertices.push_back(valorE1);
                     string valorE2 = line.substr(9, 2);
                     vetorDeVertices.push_back(valorE2);
@@ -200,10 +197,10 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
                     //########## Adicionando vertices(estados) no automato
                     for (int i = 0; i < vetorDeVertices.size(); i++) {
                         if (!autoDetermi->vertexExists(vetorDeVertices[i])) {
-                            autoDetermi->addVertice(vetorDeVertices[i]); // Adiciona o vÈrtice somente se ele n„o existir
+                            autoDetermi->addVertice(vetorDeVertices[i]); // Adiciona o v√©rtice somente se ele n√£o existir
                         }
                         else {
-                            //std::cout << "O vertice j· existe no grafo." << std::endl;
+                            //std::cout << "O vertice j√° existe no grafo." << std::endl;
                             continue;
                         }
                     }
@@ -216,7 +213,7 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
                         string valorE0 = line.substr(1, 2);
 
                         vetorDeVertices.push_back(valorE0);
-                        string valorE1 = line.substr(5, 2);// ObtÈm a parte apÛs os dois pontos como uma string
+                        string valorE1 = line.substr(5, 2);// Obt√©m a parte ap√≥s os dois pontos como uma string
                         vetorDeVertices.push_back(valorE1);
                         string valorE2 = line.substr(9, 2);
                         vetorDeVertices.push_back(valorE2);
@@ -227,10 +224,10 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
                         //########## Adicionando vertices(estados) no automato
                         for (int i = 0; i < vetorDeVertices.size(); i++) {
                             if (!autoDetermi->vertexExists(vetorDeVertices[i])) {
-                                autoDetermi->addVertice(vetorDeVertices[i]); // Adiciona o vÈrtice somente se ele n„o existir
+                                autoDetermi->addVertice(vetorDeVertices[i]); // Adiciona o v√©rtice somente se ele n√£o existir
                             }
                             else {
-                                //std::cout << "O vertice j· existe no grafo." << std::endl;
+                                //std::cout << "O vertice j√° existe no grafo." << std::endl;
                                 continue;
                             }
                         }
@@ -242,7 +239,7 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
                         string valorE0 = line.substr(1, 2);
 
                         vetorDeVertices.push_back(valorE0);
-                        string valorE1 = line.substr(5, 2);// ObtÈm a parte apÛs os dois pontos como uma string
+                        string valorE1 = line.substr(5, 2);// Obt√©m a parte ap√≥s os dois pontos como uma string
                         vetorDeVertices.push_back(valorE1);
                         string valorE2 = line.substr(9, 2);
                         vetorDeVertices.push_back(valorE2);
@@ -253,10 +250,10 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
                         //########## Adicionando vertices(estados) no automato
                         for (int i = 0; i < vetorDeVertices.size(); i++) {
                             if (!autoDetermi->vertexExists(vetorDeVertices[i])) {
-                                autoDetermi->addVertice(vetorDeVertices[i]); // Adiciona o vÈrtice somente se ele n„o existir
+                                autoDetermi->addVertice(vetorDeVertices[i]); // Adiciona o v√©rtice somente se ele n√£o existir
                             }
                             else {
-                                //std::cout << "O vertice j· existe no grafo." << std::endl;
+                                //std::cout << "O vertice j√° existe no grafo." << std::endl;
                                 continue;
                             }
                         }
@@ -267,7 +264,7 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
                         string valorE0 = line.substr(0, 2);
 
                         vetorDeVertices.push_back(valorE0);
-                        string valorE1 = line.substr(4, 2);// ObtÈm a parte apÛs os dois pontos como uma string
+                        string valorE1 = line.substr(4, 2);// Obt√©m a parte ap√≥s os dois pontos como uma string
                         vetorDeVertices.push_back(valorE1);
                         string valorE2 = line.substr(8, 2);
                         vetorDeVertices.push_back(valorE2);
@@ -278,10 +275,10 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
                         //########## Adicionando vertices(estados) no automato
                         for (int i = 0; i < vetorDeVertices.size(); i++) {
                             if (!autoDetermi->vertexExists(vetorDeVertices[i])) {
-                                autoDetermi->addVertice(vetorDeVertices[i]); // Adiciona o vÈrtice somente se ele n„o existir
+                                autoDetermi->addVertice(vetorDeVertices[i]); // Adiciona o v√©rtice somente se ele n√£o existir
                             }
                             else {
-                                //std::cout << "O vertice j· existe no grafo." << std::endl;
+                                //std::cout << "O vertice j√° existe no grafo." << std::endl;
                                 continue;
                             }
                         }
@@ -293,7 +290,7 @@ void configAutomato(string nomeArquivo, Automato* autoDetermi) {
 
             }
         }
-        // FaÁa algo com a linha lida, por exemplo, imprima-a
+        // Fa√ßa algo com a linha lida, por exemplo, imprima-a
         //std::cout << line << std::endl;
     }
     inputFile.close();
@@ -369,7 +366,7 @@ void testAutomato(std::string nomeArquivo, Automato* autoDetermi){
 }
 
 //========================================== Automato Determministico
-// ===================== ConfiguraÁ„o e teste do AUTOMATO N√O DETERMINISTICO
+// ===================== Configura√ß√£o e teste do AUTOMATO N√ÉO DETERMINISTICO
 AutoND::AutoND() : adjacencyList() {}
 
 bool AutoND::DFSUtil(const std::string& atual, const std::string& entradaRestante, std::set<std::string>& visitados) {
@@ -379,7 +376,7 @@ bool AutoND::DFSUtil(const std::string& atual, const std::string& entradaRestant
         return true;
     }*/
 
-    // Processar o estado atual, se necess·rio
+    // Processar o estado atual, se necess√°rio
     std::cout << "Visitando estado: " << atual << " | Entrada restante: " << entradaRestante << std::endl;
     visitados.insert(atual);
 
@@ -387,7 +384,7 @@ bool AutoND::DFSUtil(const std::string& atual, const std::string& entradaRestant
         std::string proximoEstado = transicao.first;
         std::string simboloTransicao = transicao.second;
 
-        // Verifica se a transiÁ„o È possÌvel
+        // Verifica se a transi√ß√£o √© poss√≠vel
         if (!entradaRestante.empty() && entradaRestante.substr(0, simboloTransicao.size()) == simboloTransicao) {
             std::string novaEntrada = entradaRestante.substr(simboloTransicao.size());
 
@@ -404,13 +401,13 @@ bool AutoND::DFSUtil(const std::string& atual, const std::string& entradaRestant
     return false;
 }
 
-// FunÁ„o de chamada para DFS com verificaÁıes adicionais
+// Fun√ß√£o de chamada para DFS com verifica√ß√µes adicionais
 void AutoND::DFS(string& entrada) {
     std::set<std::string> visitados;
     bool resultado = DFSUtil(estado_inicial, entrada_avaliada, visitados);
 
     if (!resultado) {
-        std::cout << "N„o chegou a um estado final." << std::endl;
+        std::cout << "N√£o chegou a um estado final." << std::endl;
         
     }
     
@@ -461,7 +458,7 @@ void configAutoND(std::string nomeArquivo, AutoND* nonDetermi) {
         if (line != " ") {
             if (linhasLidas == 0 && line.size() >= 2) {
                 cout << "Alfabeto da Linguagem\t";
-                valorAresta1 = line[2]; // ObtÈm a parte apÛs os dois pontos como uma string
+                valorAresta1 = line[2]; // Obt√©m a parte ap√≥s os dois pontos como uma string
                 valorAresta2 = line[6];
                 std::cout << valorAresta1 << "\t" << valorAresta2 << std::endl;
                 linhasLidas++;
@@ -477,13 +474,13 @@ void configAutoND(std::string nomeArquivo, AutoND* nonDetermi) {
                 }
                 if (inicial == 1) {
                     cout << "inicial" << endl;
-                    std::regex pattern("q[0-9]"); // Express„o regular para encontrar padrıes "q" seguido de um dÌgito
+                    std::regex pattern("q[0-9]"); // Express√£o regular para encontrar padr√µes "q" seguido de um d√≠gito
                     std::smatch match;
                     state_lidos = 0;
-                    // Procura pelo padr„o na linha
+                    // Procura pelo padr√£o na linha
                 loop_1:
                     while (std::regex_search(line, match, pattern)) {
-                        // ObtÈm a posiÁ„o da ocorrÍncia atual
+                        // Obt√©m a posi√ß√£o da ocorr√™ncia atual
 
                         size_t match_pos = match.position();
 
@@ -519,7 +516,7 @@ void configAutoND(std::string nomeArquivo, AutoND* nonDetermi) {
                                 
                                 break;
                             default:
-                                std::cout << "OpÁ„o inv·lida." << std::endl;
+                                std::cout << "Op√ß√£o inv√°lida." << std::endl;
                                 break;
                             }
                             line = match.suffix();
@@ -533,10 +530,10 @@ void configAutoND(std::string nomeArquivo, AutoND* nonDetermi) {
                     //########## Adicionando vertices(estados) no automato
                     for (int i = 0; i < vetorDeVertices.size(); i++) {
                         if (!nonDetermi->vertexExists(vetorDeVertices[i])) {
-                            nonDetermi->addVertice(vetorDeVertices[i]); // Adiciona o vÈrtice somente se ele n„o existir
+                            nonDetermi->addVertice(vetorDeVertices[i]); // Adiciona o v√©rtice somente se ele n√£o existir
                         }
                         else {
-                            //std::cout << "O vertice j· existe no grafo." << std::endl;
+                            //std::cout << "O vertice j√° existe no grafo." << std::endl;
                             continue;
                         }
                     }
@@ -544,14 +541,14 @@ void configAutoND(std::string nomeArquivo, AutoND* nonDetermi) {
                 }
                 else {
                     cout << "Normal" << endl;
-                    std::regex pattern("q[0-9]"); // Express„o regular para encontrar padrıes "q" seguido de um dÌgito
+                    std::regex pattern("q[0-9]"); // Express√£o regular para encontrar padr√µes "q" seguido de um d√≠gito
                     std::smatch match;
                     size_t pos = 0;
                     state_lidos = 0;
-                    // Procura pelo padr„o na linha
+                    // Procura pelo padr√£o na linha
                 loop:
                     while (std::regex_search(line, match, pattern)) {
-                        // ObtÈm a posiÁ„o da ocorrÍncia atual
+                        // Obt√©m a posi√ß√£o da ocorr√™ncia atual
 
                         size_t match_pos = match.position();
 
@@ -581,7 +578,7 @@ void configAutoND(std::string nomeArquivo, AutoND* nonDetermi) {
                                 valorE3 = line.substr(match_pos, 2);
                                 break;
                             default:
-                                std::cout << "OpÁ„o inv·lida." << std::endl;
+                                std::cout << "Op√ß√£o inv√°lida." << std::endl;
                                 break;
                             }
                             line = match.suffix();
@@ -602,10 +599,10 @@ void configAutoND(std::string nomeArquivo, AutoND* nonDetermi) {
                     //########## Adicionando vertices(estados) no automato
                     for (int i = 0; i < vetorDeVertices.size(); i++) {
                         if (!nonDetermi->vertexExists(vetorDeVertices[i])) {
-                            nonDetermi->addVertice(vetorDeVertices[i]); // Adiciona o vÈrtice somente se ele n„o existir
+                            nonDetermi->addVertice(vetorDeVertices[i]); // Adiciona o v√©rtice somente se ele n√£o existir
                         }
                         else {
-                            //std::cout << "O vertice j· existe no grafo." << std::endl;
+                            //std::cout << "O vertice j√° existe no grafo." << std::endl;
                             continue;
                         }
                     }
@@ -668,4 +665,4 @@ void testAutoND(std::string nomeArquivo, AutoND* autoDetermi) {
 }
 
 
-//========================================== Automato N„o Determministico c/ transiÁ„o vazia 
+//========================================== Automato N√£o Determministico c/ transi√ß√£o vazia 
