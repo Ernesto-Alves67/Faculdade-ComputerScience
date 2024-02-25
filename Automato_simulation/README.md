@@ -12,7 +12,7 @@ Bem-vindo à brincadeira com automatos! Este programa oferece uma plataforma par
 ## Requisitos do Sistema
 
 - Sistema operacional: Windows, macOS ou Linux.
-- [Clique aqui para baixar a versão mais recente do programa](https://github.com/Ernesto-Alves67/Faculdade-ComputerScience/new/main/Automato_simulation/Automato_simulation.exe).
+- [Clique aqui para baixar a versão mais recente do programa](https://github.com/Ernesto-Alves67/Faculdade-ComputerScience/raw/main/Automato_simulation/Automato_simulation.exe).
 
 ## Como Baixar e Executar
 
@@ -23,6 +23,7 @@ Bem-vindo à brincadeira com automatos! Este programa oferece uma plataforma par
 ## Como Utilizar
 
 - Na interface do programa, selecione a opção correspondente ao tipo de autômato que deseja simular.
+- Entre com a definição do automato. Para isso execute a aplicação em um local onde estão os arquivos que você ira utilizar.
 - Insira a entrada desejada e observe a execução do autômato.
 - Explore os diferentes estados e transições para entender o comportamento do autômato.
 
